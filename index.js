@@ -223,9 +223,11 @@ class CardanocliJs {
       const valueList = utxo.slice(2, utxo.length).join(" ").split("+");
       const value = {};
       valueList.forEach((v) => {
-        let [quantity, asset] = v.trim().split(" ");
-        quantity = parseInt(quantity);
-        value[asset] = quantity;
+        if (v != " TxOutDatumHashNone") {
+          let [quantity, asset] = v.trim().split(" ");
+          quantity = parseInt(quantity);
+          value[asset] = quantity;
+        };
       });
       return {
         txHash,
